@@ -3,6 +3,9 @@ local PlayerJobGrade = 0
 
 RegisterNetEvent("rFw:JobChange")
 AddEventHandler("rFw:JobChange", function(job, grade)
+    if PlayerJob == "Mechanic" then
+        unloadMechanicJob()
+    end
     PlayerJob = job
     PlayerJobGrade = grade
 
@@ -70,4 +73,9 @@ function loadMechanicJob() -- All things in this will only be loaded if you have
             end)
         end
     end
+end
+
+
+function unloadMechanicJob()
+    -- Will unload action zone
 end

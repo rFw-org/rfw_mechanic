@@ -87,13 +87,15 @@ function EnumeratePickups()
 	return EnumerateEntities(FindFirstPickup, FindNextPickup, EndFindPickup)
 end
 
-exports.rFw:RegisterItemAction("repairkit", function()
-	print("Ouai l'item repairkit est utilisé")
+exports.rFw:RegisterItemAction("repairkit", function() -- Need to do animation later
+	local veh = GetClosestVehicle()
+	local owner = GetEntityOwner(veh)
+	TriggerServerEvent(config.prefix.."RepairVehicle", owner, VehToNet(veh))
 end)
 
-RegisterCommand("repaircmd", function(source, args, rawCommand)
-	exports.rFw:UseItem("repairkit")
-end, false)
+--RegisterCommand("repaircmd", function(source, args, rawCommand)
+--	exports.rFw:UseItem("repairkit")
+--end, false)
 
 RegisterNetEvent(config.prefix.."RepairVehicle")
 AddEventHandler(config.prefix.."RepairVehicle", function(net)
