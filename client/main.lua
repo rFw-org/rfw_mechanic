@@ -51,14 +51,15 @@ function loadMechanicJob() -- All things in this will only be loaded if you have
                         RageUI.Button("Repair", "Repair the closet car", true, function(Hovered, Active, Selected)
                             if (Selected) then
                                 local veh = GetClosestVehicle()
-                                SetVehicleFixed(veh)
-                                SetVehicleDeformationFixed(veh)
+                                local owner = GetEntityOwner(veh)
+                                TriggerServerEvent(config.prefix.."RepairVehicle", owner, VehToNet(veh))
                             end
                         end)
                         RageUI.Button("Clean", "Clean the closet car", true, function(Hovered, Active, Selected)
                             if (Selected) then
                                 local veh = GetClosestVehicle()
-                                SetVehicleDirtLevel(veh, 0.0)
+                                local owner = GetEntityOwner(veh)
+                                TriggerServerEvent(config.prefix.."CleanVehicle", owner, VehToNet(veh))
                             end
                         end)
                 

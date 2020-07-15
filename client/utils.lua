@@ -32,6 +32,11 @@ GetClosestVehicle = function(coords)
 	return closestVehicle, closestDistance
 end
 
+function GetEntityOwner(entity)
+	local owner = NetworkGetEntityOwner(entity)
+	return GetPlayerServerId(owner)
+end
+
 
 local entityEnumerator = {
 	__gc = function(enum)
@@ -81,3 +86,17 @@ end
 function EnumeratePickups()
 	return EnumerateEntities(FindFirstPickup, FindNextPickup, EndFindPickup)
 end
+
+
+RegisterNetEvent(config.prefix.."RepairVehicle")
+AddEventHandler(config.prefix.."RepairVehicle", function(net)
+	local veh = NetToVeh(net)
+	SetVehicleFixed(veh)
+	SetVehicleDeformationFixed(veh)
+end)
+
+RegisterNetEvent(config.prefix.."CleanVehicle")
+AddEventHandler(config.prefix.."CleanVehicle", function(net)
+	local veh = NetToVeh(net)
+	SetVehicleDirtLevel(veh, 0.0)
+end)
