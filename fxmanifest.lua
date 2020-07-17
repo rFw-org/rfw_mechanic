@@ -33,6 +33,7 @@ client_scripts {
 
 client_scripts {
     "config.lua",
+    "@rFw/client/shared.lua",
     "client/*.lua",
 }
 

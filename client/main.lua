@@ -73,9 +73,16 @@ function loadMechanicJob() -- All things in this will only be loaded if you have
             end)
         end
     end
+
+
+    RegisterActionZone({name = "mechanic1", pos = vector3(-178.5, -1291.1, 31.2)}, "Press ~INPUT_PICKUP~ to do action", function()
+        ShowNotification("Yes this is working!")
+    end)
+
 end
 
 
 function unloadMechanicJob()
     -- Will unload action zone
+    UnregisterActionZone("mechanic1")
 end
